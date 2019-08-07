@@ -17,7 +17,11 @@ class TeamsController < ApplicationController
 
   # POST: /teams
   post "/teams" do
-    
+    @user = current_user
+    @team = Team.create(name: params[:team_name], roster_size: params[:roster_size])
+    @team.user = @user
+    @team.save
+
     redirect "/teams"
   end
 
