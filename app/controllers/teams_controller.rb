@@ -12,7 +12,11 @@ class TeamsController < ApplicationController
 
   # GET: /teams/new
   get "/teams/new" do
-    erb :"/teams/new.html"
+    if !logged_in?
+      redirect to '/login'
+    else
+      erb :"/teams/new.html"
+    end
   end
 
   # POST: /teams
@@ -27,11 +31,21 @@ class TeamsController < ApplicationController
 
   # GET: /teams/5
   get "/teams/:id" do
-    erb :"/teams/show.html"
+    @team = Team.find(params[:id])
+    binding.pry
+    if logged_in? && @team.user.id == session[:user_id]
+      @team = Team.find(params[:id])
+      #binding.pry
+      erb :"/teams/show.html"
+    else
+      redirect to '/login'
+
+    end
   end
 
   # GET: /teams/5/edit
   get "/teams/:id/edit" do
+    @team = Team.find(params[:id])
     erb :"/teams/edit.html"
   end
 

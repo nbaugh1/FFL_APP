@@ -13,6 +13,15 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get '/logout' do
+    if session[:user_id] != nil
+      session.destroy
+      redirect to '/'
+    else
+      redirect to '/teams'
+    end
+  end
+
   helpers do
     
   def logged_in?

@@ -1,15 +1,28 @@
-<h1><%= @user.username%>'s Fantasy Football Teams</h1>
-    <ul>
+<h3><%= @user.username%>'s Fantasy Football Teams</h3>
+<table>
+        <thead>
+          <tr>
+              <th>Team Name</th>
+              <th>League</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
         <% @user.teams.each do |team| %>
-            <li><a href="/teams/<%= team.id %>"><%= team.name %></a>
-            <a href="/teams/<%= team.id %>/edit">edit team</a> / 
-            <a href="/teams/<%= team.id %>/delete">delete team</a>
-            </li>
-        <% end %>
+          <tr>
+            <td><a href="/teams/<%= team.id %>"> <%= team.name %></a></td>
+            <td>TO DO</td>
+            <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/edit">Edit</a><td>
+          </tr>
+          <% end %>
+         
+        </tbody>
+      </table>
+    <ul>
+        
     </ul>
 
-
-<br><br><a href='/teams/new'>Click here to create a new team</a>
 
 
 <!--  TO DO 
