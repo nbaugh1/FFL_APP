@@ -2,6 +2,7 @@ class PlayersController < ApplicationController
 
   # GET: /players
   get "/players" do
+    @positions = ["QB", "RB", "WR", "TE", "PK", "DEF"]
     erb :"/players/index.html"
   end
 
