@@ -1,1 +1,4 @@
 <h3><%= @team.name %></h3>
+<% @team.players.each do |player| %>
+    <%= player.first_name %><br>
+<%end%>

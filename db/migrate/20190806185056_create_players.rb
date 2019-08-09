@@ -11,6 +11,9 @@ class CreatePlayers < ActiveRecord::Migration
       t.integer :points
       t.float :vbd
       t.integer :bye_week
+      t.integer :projected_price
+      t.integer :actual_price
+      t.integer :team_id
       t.timestamps null: false
     end
   end

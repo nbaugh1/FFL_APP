@@ -29,8 +29,11 @@ ActiveRecord::Schema.define(version: 20190807160754) do
     t.integer  "points"
     t.float    "vbd"
     t.integer  "bye_week"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "projected_price"
+    t.integer  "actual_price"
+    t.integer  "team_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "teams", force: :cascade do |t|

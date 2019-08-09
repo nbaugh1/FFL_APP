@@ -32,7 +32,7 @@ class TeamsController < ApplicationController
   # GET: /teams/5
   get "/teams/:id" do
     @team = Team.find(params[:id])
-    binding.pry
+    #binding.pry
     if logged_in? && @team.user.id == session[:user_id]
       @team = Team.find(params[:id])
       #binding.pry
@@ -46,12 +46,24 @@ class TeamsController < ApplicationController
   # GET: /teams/5/edit
   get "/teams/:id/edit" do
     @team = Team.find(params[:id])
+    session[:team_id] = params[:id]
     erb :"/teams/edit.html"
   end
 
   # PATCH: /teams/5
   patch "/teams/:id" do
     redirect "/teams/:id"
+  end
+
+  get "/teams/:id/add_player" do 
+    if !logged_in?
+      redirect to "/login"
+    else
+      @positions = ["QB", "RB", "WR", "TE", "PK", "DEF"]
+      @team = Team.find(params[:id])
+      session[:team_id] = params[:id]
+      erb :"/teams/add_player"
+    end
   end
 
   # DELETE: /teams/5/delete
