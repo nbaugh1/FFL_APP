@@ -1,9 +1,9 @@
-<h3><%= @user.username%>'s Fantasy Football Teams</h3>
+<h3 class="center-align"><%= @user.username%>'s Fantasy Football Teams</h3>
 <table>
         <thead>
           <tr>
               <th>Team Name</th>
-              <th>League</th>
+              <th></th>
               <th></th>
               <th></th>
               <th></th>
@@ -15,9 +15,9 @@
         <% @user.teams.each do |team| %>
           <tr>
             <td><a href="/teams/<%= team.id %>"> <%= team.name %></a></td>
-            <td>TO DO</td>
-            <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/edit">Edit</a><td>
             <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/add_player">Add Player</a><td>
+            <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/edit">Edit</a><td>
+
           </tr>
           <% end %>
          

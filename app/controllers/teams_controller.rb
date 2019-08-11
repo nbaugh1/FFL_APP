@@ -52,7 +52,16 @@ class TeamsController < ApplicationController
 
   # PATCH: /teams/5
   patch "/teams/:id" do
-    redirect "/teams/:id"
+    @team = Team.find(params[:id])
+    #binding.pry
+    if params[:new_team_name] != @team.name && params[:new_team_name] != ""
+      @team.name = params[:new_team_name]
+    elsif params[:new_roster_size] != @team.roster_size && params[:new_roster_size] != nil
+      #binding.pry
+      @team.roster_size = params[:new_roster_size]
+    end
+    @team.save
+    redirect "/teams/#{@team.id}/edit"
   end
 
   get "/teams/:id/add_player" do 
@@ -66,8 +75,24 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE: /teams/5/delete
   delete "/teams/:id/delete" do
-    redirect "/teams"
+    if logged_in?
+      @team = Team.find(params[:id])
+      #redirect to "/cases" unless authorize 
+      @players = []
+      @players << Player.find_by(team_id: params[:id])
+      #binding.pry
+      @players.each do |player|
+        #binding.pry
+        player.team_id = nil
+        player.save
+      end
+      @team.destroy
+      session[:team_id] = nil
+      #flash[:alert] = "case deleted"
+      redirect '/teams'
+    else
+        redirect '/login'
+    end
   end
 end

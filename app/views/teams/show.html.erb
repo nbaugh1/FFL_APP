@@ -1,4 +1,36 @@
 <h3><%= @team.name %></h3>
-<% @team.players.each do |player| %>
-    <%= player.first_name %><br>
-<%end%>
+<h5>Roster</h5>
+<div id="all" class="col s12">
+        <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>NFL Team</th>
+                <th>2018 Points</th>
+                <th>VBD</th>
+                <th>Bye Week</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @team.players.each do |player| %>
+                <tr>
+                    <td><%= player.rank %></td>
+                    <td><%= player.first_name %> <%= player.last_name %></td>
+                    <td><%= player.position %></td>
+                    <td><%= player.nfl_team %></td>
+                    <td><%= player.points %></td>
+                    <td><%= player.vbd %></td>
+                    <td><%= player.bye_week %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <div>
+        <form action="/teams/<%= @team.id %>/delete" method="POST">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete">
+        </form>
+        </div>
+    </div>
