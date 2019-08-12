@@ -2,21 +2,15 @@ class TeamsController < ApplicationController
 
   # GET: /teams
   get "/teams" do
-    if !logged_in?
-      redirect to '/login'
-    else
-      @user = current_user
-      erb :"/teams/index.html"
-    end
+    redirect_if_not_logged_in
+    @user = current_user
+    erb :"/teams/index.html"
   end
 
   # GET: /teams/new
   get "/teams/new" do
-    if !logged_in?
-      redirect to '/login'
-    else
-      erb :"/teams/new.html"
-    end
+    redirect_if_not_logged_in
+    erb :"/teams/new.html"
   end
 
   # POST: /teams
@@ -33,13 +27,12 @@ class TeamsController < ApplicationController
   get "/teams/:id" do
     redirect_if_not_logged_in
     @team = Team.find(params[:id])
-      @team = Team.find(params[:id])
-      #binding.pry
-      erb :"/teams/show.html"
+    erb :"/teams/show.html"
   end
 
   # GET: /teams/5/edit
   get "/teams/:id/edit" do
+    redirect_if_not_logged_in
     @team = Team.find(params[:id])
     session[:team_id] = params[:id]
     erb :"/teams/edit.html"
@@ -48,11 +41,9 @@ class TeamsController < ApplicationController
   # PATCH: /teams/5
   patch "/teams/:id" do
     @team = Team.find(params[:id])
-    #binding.pry
     if params[:new_team_name] != @team.name && params[:new_team_name] != ""
       @team.name = params[:new_team_name]
     elsif params[:new_roster_size] != @team.roster_size && params[:new_roster_size] != nil
-      #binding.pry
       @team.roster_size = params[:new_roster_size]
     end
     @team.save
