@@ -23,6 +23,15 @@ class TeamsController < ApplicationController
     redirect "/teams"
   end
 
+  get "/teams/:id/drop_player" do 
+    @player= Player.find(params[:id])
+    @old_id = @player.team_id
+    @player.team.id = nil
+    @player.team_id = nil
+    @player.save
+    redirect to "/teams/#{@old_id}/add_player"
+  end
+
   # GET: /teams/5
   get "/teams/:id" do
     redirect_if_not_logged_in

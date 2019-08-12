@@ -17,7 +17,7 @@
             <% @team.players.each do |player| %>
                 <tr>
                     <td><%= player.rank %></td>
-                    <td><%= player.first_name %> <%= player.last_name %></td>
+                    <td><a href="/players/<%= player.id %>"> <%= player.first_name %> <%= player.last_name %></a></td>
                     <td><%= player.position %></td>
                     <td><%= player.nfl_team %></td>
                     <td><%= player.points %></td>

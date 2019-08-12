@@ -1,10 +1,32 @@
-<h1>This is the show page for an individual instance of your model.</h1>
 
-<h2><%= @player.first_name %> <%= @player.actual_price %> <%= @team.name %></h2>
+
+<h2><%= @player.first_name %> <%= @player.last_name %><br></h2>
+<h5>Price paid: $<%= @player.actual_price %></h5>
+<h5>Team: <%= @team.name %></h5>
 <div>
     <% if @team.players.count < @team.roster_size %>
-        <a class="waves-effect waves-light btn green accent-2" href="/teams/<%= @team.id %>/add_player">Add Another Player</a><td>
+        <a class="waves-effect waves-light btn green accent-2" href="/teams/<%= @team.id %>/add_player">Add Another Player</a>
+        <a class="waves-effect waves-light btn modal-trigger green accent-2" href="#modal1">Drop Player</a>
+        <a class="waves-effect waves-light btn modal-trigger green accent-2" href="/teams">Teams List</a>
+
+
     <% else %>
-        <a class="waves-effect waves-light btn green accent-2 disabled" href="/teams/<%= @team.id %>/add_player">Add Another Player</a><td>
+        <a class="waves-effect waves-light btn green accent-2 disabled" href="/teams/<%= @team.id %>/add_player">Add Another Player</a>
+        <a class="waves-effect waves-light btn modal-trigger green accent-2" href="/teams">Teams List</a>
+
     <% end %>
+</div>
+<br>
+<div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Drop Player</h4>
+      <p>Are you sure you want to drop <%=  @player.first_name %> <%=  @player.last_name %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/teams/<%= @player.id %>/drop_player" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 </div>
