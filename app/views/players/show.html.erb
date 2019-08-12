@@ -1,3 +1,10 @@
 <h1>This is the show page for an individual instance of your model.</h1>
 
 <h2><%= @player.first_name %> <%= @player.actual_price %> <%= @team.name %></h2>
+<div>
+    <% if @team.players.count < @team.roster_size %>
+        <a class="waves-effect waves-light btn green accent-2" href="/teams/<%= @team.id %>/add_player">Add Another Player</a><td>
+    <% else %>
+        <a class="waves-effect waves-light btn green accent-2 disabled" href="/teams/<%= @team.id %>/add_player">Add Another Player</a><td>
+    <% end %>
+</div>

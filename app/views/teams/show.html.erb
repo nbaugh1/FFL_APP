@@ -27,10 +27,18 @@
                 <% end %>
             </tbody>
         </table>
-        <div>
+    </div>
+    <br>
+
+
+
+
+
+        <div class="center-align">
         <form action="/teams/<%= @team.id %>/delete" method="POST">
             <input id="hidden" type="hidden" name="_method" value="delete">
-            <input type="submit" value="Delete">
+            <input type="submit" class="waves-effect waves-light btn green accent-2" value="Delete">
         </form>
+        </div>
         </div>
     </div>

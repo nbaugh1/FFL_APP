@@ -20,6 +20,7 @@ class PlayersController < ApplicationController
   get "/players/:id" do
     @player = Player.find(params[:id])
     @team = Team.find(session[:team_id])
+  
     erb :"/players/show.html"
   end
 

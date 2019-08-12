@@ -11,6 +11,7 @@
             </li>
             <% end %>
         </ul>
+    
     </div>
     
     
@@ -36,9 +37,13 @@
                     <td><%= player.points %></td>
                     <% if player.team_id == nil %>
                     <td><a class="waves-effect waves-light btn green accent-2" href="/players/<%= player.id %>/edit">Add Player</a><td>
-                    <%else %>
+                    <% elsif player.team_id == session[:team_id].to_i %>
+                    <td><a class="waves-effect waves-light btn green accent-2 disabled" href="/players/<%= player.id %>/edit">Add Player</a><td>
+                    <td><a class="waves-effect waves-light btn green accent-2" href="/players/<%= player.id %>">Drop Player</a><td>
+                    <% else %>
                     <td><a class="waves-effect waves-light btn green accent-2 disabled" href="/players/<%= player.id %>/edit">Add Player</a><td>
                     <% end %>
+
                 </tr>
                 <% end %>
             </tbody>

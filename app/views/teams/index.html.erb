@@ -15,8 +15,13 @@
         <% @user.teams.each do |team| %>
           <tr>
             <td><a href="/teams/<%= team.id %>"> <%= team.name %></a></td>
-            <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/add_player">Add Player</a><td>
-            <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/edit">Edit</a><td>
+            <% if team.players.count < team.roster_size %>
+              <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/add_player">Add Player</a><td>
+            <% else %>
+              <td><a class="waves-effect waves-light btn green accent-2 disabled" href="/teams/<%= team.id %>/add_player">Add Player</a><td>
+            <% end %>        
+              <td><a class="waves-effect waves-light btn green accent-2" href="/teams/<%= team.id %>/edit">Edit</a><td>
+            
 
           </tr>
           <% end %>
