@@ -6,7 +6,6 @@ csv_data = CSV.read('/Users/Nick/Development/ffl_app/db/seeds/25635_080620190117
 csv_data.shift
 csv_data.shift
 csv_data.each do |row|
-    
     p = Player.create
     p.rank = row[0].to_i
     p.csv_id = row[1].to_i
@@ -18,7 +17,6 @@ csv_data.each do |row|
     p.vbd = row[7].to_f
     p.bye_week = row[8].to_i
     p.save
-
 end
 
 puts "Player database created!"
