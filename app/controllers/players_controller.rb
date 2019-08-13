@@ -26,6 +26,7 @@ class PlayersController < ApplicationController
 
   # GET: /players/5/edits
   get "/players/:id/edit" do
+    redirect_if_not_logged_in
     @player = Player.find(params[:id])
     @team = Team.find(session[:team_id])
     erb :"/players/edit.html"
@@ -39,7 +40,7 @@ class PlayersController < ApplicationController
       else
         @player = Player.find(params[:id])
         @player.actual_price = params[:actual_price]
-        @player.projected_price = params[:projected_price]
+        #@player.projected_price = params[:projected_price]
         @player.team_id = session[:team_id]
         @player.save
         redirect to "/players/#{@player.id}"
