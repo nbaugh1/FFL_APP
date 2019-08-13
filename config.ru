@@ -9,6 +9,5 @@ use Rack::MethodOverride
 use UsersController
 use PlayersController
 use TeamsController
-use LeaguesController
 
 run ApplicationController
