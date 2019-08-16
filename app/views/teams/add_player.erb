@@ -1,3 +1,9 @@
+<form action="/teams/<%= @team.id %>/add_player" method="GET">
+            <input id="search" type="text" name="search">
+            <label for="search">search</label>
+            <button class="btn waves-effect waves-light green accent-2 white-text" type="submit" name="action">Submit</button>
+</form>
+
 <br><br>
  <div class="row">
     <div class="col s12">
@@ -27,7 +33,7 @@
                 </tr>
         </thead>
         <tbody>
-            <% Player.all.each do |player| %>
+            <% @players.each do |player| %>
                 <tr>
                     <td><%= player.rank %></td>
                     <td><%= player.first_name %> <%= player.last_name %></td>
