@@ -1,5 +1,4 @@
 class TeamsController < ApplicationController
-
   get "/teams" do
     redirect_if_not_logged_in
     @user = current_user
@@ -20,8 +19,8 @@ class TeamsController < ApplicationController
     redirect "/teams"
   end
 
-  get "/teams/:id/drop_player" do 
-    @player= Player.find(params[:id])
+  get "/teams/:id/drop_player" do
+    @player = Player.find(params[:id])
     @old_id = @player.team_id
     @player.team.id = nil
     @player.team_id = nil
@@ -53,20 +52,23 @@ class TeamsController < ApplicationController
     redirect "/teams/#{@team.id}/edit"
   end
 
-  get "/teams/:id/add_player" do 
-      redirect_if_not_logged_in
-      @positions = ["QB", "RB", "WR", "TE", "PK", "DEF"]
-      @team = Team.find(params[:id])
-      session[:team_id] = params[:id]
-      if session[:user_id] == @team.user_id
-        erb :"/teams/add_player"
-      else
-        redirect to '/login'
-      end
+  get "/teams/:id/add_player" do
+    redirect_if_not_logged_in
+
+    @players = params[:search] ? Player.all.select { |p| p.first_name.downcase.include?(params[:search].downcase) } : Player.all
+
+    @positions = ["QB", "RB", "WR", "TE", "PK", "DEF"]
+    @team = Team.find(params[:id])
+    session[:team_id] = params[:id]
+    if session[:user_id] == @team.user_id
+      erb :"/teams/add_player"
+    else
+      redirect to "/login"
+    end
   end
 
   delete "/teams/:id/delete" do
-   redirect_if_not_logged_in
+    redirect_if_not_logged_in
     @team = Team.find(params[:id])
     @team.players.each do |player|
       player.team_id = nil
@@ -74,6 +76,6 @@ class TeamsController < ApplicationController
     end
     @team.destroy
     session[:team_id] = nil
-    redirect '/teams'
+    redirect "/teams"
   end
 end

@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20190807160754) do
 
-  create_table "leagues", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "players", force: :cascade do |t|
     t.integer  "rank"
     t.integer  "csv_id"

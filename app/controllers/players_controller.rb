@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-
   get "/players" do
     @positions = ["QB", "RB", "WR", "TE", "PK", "DEF"]
     erb :"/players/index.html"
@@ -8,6 +7,7 @@ class PlayersController < ApplicationController
   get "/players/:id" do
     @player = Player.find(params[:id])
     @team = Team.find(session[:team_id])
+    @doc = @player.scrape_profile
     erb :"/players/show.html"
   end
 
@@ -19,7 +19,7 @@ class PlayersController < ApplicationController
   end
 
   post "/players/:id" do
-    if params.values.any? {|value| value == ""}
+    if params.values.any? { |value| value == "" }
       redirect to "/players/#{params[:id]}/edit"
     else
       @player = Player.find(params[:id])
