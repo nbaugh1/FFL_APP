@@ -11,3 +11,4 @@ use PlayersController
 use TeamsController
 
 run ApplicationController
+use WeeklyProjectionsController

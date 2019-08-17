@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190807160754) do
+ActiveRecord::Schema.define(version: 20190817160043) do
 
   create_table "players", force: :cascade do |t|
     t.integer  "rank"
@@ -43,6 +43,28 @@ ActiveRecord::Schema.define(version: 20190807160754) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "weekly_projections", force: :cascade do |t|
+    t.integer  "Rank"
+    t.string   "CSV_ID"
+    t.string   "Name"
+    t.string   "Pos"
+    t.string   "Team"
+    t.string   "Opp"
+    t.string   "Comp"
+    t.string   "PassYards"
+    t.float    "PassTD"
+    t.string   "Int"
+    t.string   "Att"
+    t.string   "RushYards"
+    t.float    "RushTD"
+    t.string   "Rec"
+    t.string   "RecYards"
+    t.float    "RecTD"
+    t.integer  "FantasyPoints"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
