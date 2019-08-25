@@ -39,8 +39,8 @@ wp_csv_info.each do |row|
   wp.rush_td = row[12].to_f
   wp.rec = row[13].to_f
   wp.rec_yards = row[14].to_i
-  wp.fantasy_points = row[15].to_i
-  binding.pry
+  wp.rec_td = row[15].to_f
+  wp.fantasy_points = row[16].to_i
   wp.save
 end
 
