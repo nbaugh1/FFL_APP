@@ -1,44 +1,34 @@
-<h3><%= @team.name %></h3>
-<h5>Roster</h5>
-<div id="all" class="col s12">
-        <table>
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>NFL Team</th>
-                <th>2018 Points</th>
-                <th>VBD</th>
-                <th>Bye Week</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @team.players.each do |player| %>
-                <tr>
-                    <td><%= player.rank %></td>
-                    <td><a href="/players/<%= player.id %>"> <%= player.first_name %> <%= player.last_name %></a></td>
-                    <td><%= player.position %></td>
-                    <td><%= player.nfl_team %></td>
-                    <td><%= player.points %></td>
-                    <td><%= player.vbd %></td>
-                    <td><%= player.bye_week %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
+<div class="row">
+    <div class="col s4">
+    <h3 class="center-align"><%= @team.name %></h3>
+    <h5 class="center-align">Roster</h5>
+    <div id="all" >
+        <% @team.players.each do |player| %>
+        <ul class="collapsible popout">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">menu</i>
+                    <a href="/players/<%= player.id %>"><%= player.first_name %> <%= player.last_name %></a>
+                    
+                </div>
+                <div class="collapsible-body"><span>
+                    <p>Position: <%= player.position %></p>
+                    <p>Team: <%= player.nfl_team %></p>
+                    <p><b>Week 1 Projecitons: </p></b>
+                    <p>Fantasy Points: <%= player.projections.fantasy_points %></p>
+                    </span>
+                </div>
+            </li>
+        </ul>
+        <% end%>
     </div>
     <br>
-
-
-
-
-
-        <div class="center-align">
+    <div class="center-align">
         <form action="/teams/<%= @team.id %>/delete" method="POST">
             <input id="hidden" type="hidden" name="_method" value="delete">
             <input type="submit" class="waves-effect waves-light btn green accent-2" value="Delete">
         </form>
-        </div>
-        </div>
     </div>
+</div>
+</div>
+</div>
+</div>

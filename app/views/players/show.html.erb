@@ -8,11 +8,12 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">Fantasy Analysis</span>
-        <p><%= @doc.css("div#toolsContent table tr")[32].text %></p>
+        <p>Week 1 Projections:</p>
         <p><%= @doc.css("div#toolsContent table tr")[33].text %></p>
         <p><%= @doc.css("div#toolsContent table tr")[34].text %></p>
         <p><%= @doc.css("div#toolsContent table tr")[41].text %></p>
         <p><%= @doc.css("div#toolsContent table tr")[35].text %></p>
+        <p>Projected Points: <%= @player.projections.fantasy_points %></p>
       </div>
     </div>
   </div>
@@ -39,4 +40,6 @@
     </div>
   </div>
 </div>
+
+
 
