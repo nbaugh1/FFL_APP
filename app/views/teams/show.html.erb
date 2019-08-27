@@ -7,7 +7,7 @@
         <ul class="collapsible popout">
             <li>
                 <div class="collapsible-header"><i class="material-icons">menu</i>
-                    <a href="/players/<%= player.id %>"><%= player.first_name %> <%= player.last_name %></a>
+                    <%= player.position   %>: <a href="/players/<%= player.id %>"> <%= player.first_name %> <%= player.last_name %></a>
                     
                 </div>
                 <div class="collapsible-body"><span>

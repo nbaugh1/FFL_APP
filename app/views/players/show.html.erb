@@ -20,11 +20,11 @@
 </div>
 <div>
     <% if @team.players.count < @team.roster_size %>
-        <a class="waves-effect waves-light btn green accent-2" href="/teams/<%= @team.id %>/add_player">Add Another Player</a>
+        <a class="waves-effect waves-light btn green accent-2" href="/teams/<%= @team.id %>/add_player">Return to Add Player</a>
         <a class="waves-effect waves-light btn modal-trigger green accent-2" href="#modal1">Drop Player</a>
         <a class="waves-effect waves-light btn modal-trigger green accent-2" href="/teams">Teams List</a>
     <% else %>
-        <a class="waves-effect waves-light btn green accent-2 disabled" href="/teams/<%= @team.id %>/add_player">Add Another Player</a>
+        <a class="waves-effect waves-light btn green accent-2 disabled" href="/teams/<%= @team.id %>/add_player">Return to Add Player</a>
         <a class="waves-effect waves-light btn modal-trigger green accent-2" href="/teams">Teams List</a>
     <% end %>
 </div>
